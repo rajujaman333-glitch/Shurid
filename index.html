@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>হোম - Shurid 18 Samobai Samity Ltd</title>
+  <style>
+    /* Design Tokens / Branding Colors */
+    :root {
+      --shurid-green: #3AA74C;
+      --charcoal-dark: #2D3136;
+      --accent-red: #E63946;
+      --bg-light: #F9FAFB;
+      --white: #FFFFFF;
+      --text-gray: #55585D;
+      --image-bg: #F3F4F6;
+    }
+
+    /* Reset & Base Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-light);
+      color: var(--charcoal-dark);
+      line-height: 1.6;
+      padding-bottom: 0;
+    }
+
+    /* Red Top Highlight Bar from Logo */
+    .top-accent-bar {
+      height: 6px;
+      background-color: var(--accent-red);
+      width: 100%;
+      position: relative;
+      z-index: 1001;
+    }
+
+    /* Container for layout constraints */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ==========================================
+       GLOBAL INTERACTIVE HEADER & NAVIGATION
+       ========================================== */
+    .site-navbar {
+      background-color: var(--white);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid #E5E7EB;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+    }
+
+    .nav-brand {
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--charcoal-dark);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-brand span {
+      color: var(--shurid-green);
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 24px;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: var(--charcoal-dark);
+      font-size: 15px;
+      font-weight: 600;
+      transition: color 0.2s ease;
+      padding: 8px 0;
+      position: relative;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--shurid-green);
+    }
+
+    /* Active Page Indicator Underline */
+    .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--shurid-green);
+    }
+
+    /* Mobile Menu Toggle (Pure CSS Hamburger) */
+    .menu-checkbox {
+      display: none;
+    }
+
+    .menu-toggle-label {
+      display: none;
+      cursor: pointer;
+      font-size: 24px;
+      user-select: none;
+      color: var(--charcoal-dark);
+    }
+
+    /* ==========================================
+       HERO SECTION: Association Descriptions
+       ========================================== */
+    .association-hero-section {
+      background-color: var(--white);
+      padding: 40px 0;
+      border-bottom: 1px solid #E5E7EB;
+    }
+
+    .hero-layout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .logo-wrapper {
+      width: 100%;
+      max-width: 320px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .logo-image {
+      width: 100%;
+      height: auto;
+    }
+
+    .info-stack {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      justify-content: center;
+    }
+
+    .association-title {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--charcoal-dark);
+      line-height: 1.2;
+    }
+
+    .association-description {
+      font-size: 16px;
+      color: var(--text-gray);
+    }
+
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-size: 15px;
+      font-weight: 500;
+      border-top: 1px dashed #E5E7EB;
+      padding-top: 16px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .contact-item span.icon {
+      color: var(--shurid-green);
+      font-weight: bold;
+    }
+
+    .contact-item a {
+      color: var(--charcoal-dark);
+      text-decoration: none;
+    }
+
+    .contact-item a:hover {
+      color: var(--shurid-green);
+    }
+
+    /* ==========================================
+       WELCOME MESSAGES SECTION
+       ========================================== */
+    .welcome-section {
+      padding: 50px 0;
+    }
+
+    .message-block {
+      background-color: var(--white);
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      border: 1px solid #E5E7EB;
+      margin-bottom: 40px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .message-image-container {
+      width: 100%;
+      height: 320px;
+      background-color: var(--image-bg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 12px;
+    }
+
+    .message-image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .message-text-container {
+      padding: 30px;
+    }
+
+    .message-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--charcoal-dark);
+      margin-bottom: 6px;
+    }
+
+    .message-sender {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--shurid-green);
+      margin-bottom: 20px;
+    }
+
+    .message-body {
+      font-size: 15px;
+      color: var(--text-gray);
+      text-align: justify;
+    }
+
+    .message-points {
+      margin-top: 15px;
+      list-style: none;
+    }
+
+    .message-points li {
+      margin-bottom: 15px;
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .message-points li::before {
+      content: "•";
+      color: var(--shurid-green);
+      font-weight: bold;
+      font-size: 20px;
+      position: absolute;
+      left: 0;
+      top: -4px;
+    }
+
+    .point-title {
+      font-weight: 700;
+      color: var(--charcoal-dark);
+    }
+
+    /* ==========================================
+       STATS SECTION
+       ========================================== */
+    .stats-section {
+      background-color: var(--charcoal-dark);
+      color: var(--white);
+      padding: 50px 0;
+      text-align: center;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .stat-card h3 {
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--shurid-green);
+      margin-bottom: 5px;
+    }
+
+    .stat-card p {
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #E5E7EB;
+      font-weight: 600;
+    }
+
+    /* ==========================================
+       RESPONSIVE BREAKPOINTS (Mobile Friendly)
+       ========================================== */
+    @media (max-width: 767px) {
+      .menu-toggle-label {
+        display: block;
+      }
+
+      .nav-menu {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: var(--white);
+        flex-direction: column;
+        gap: 0;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        border-top: 1px solid #E5E7EB;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-in-out;
+      }
+
+      .nav-menu li {
+        width: 100%;
+        text-align: center;
+      }
+
+      .nav-link {
+        display: block;
+        padding: 16px 0;
+        border-bottom: 1px solid #F3F4F6;
+      }
+
+      .nav-link.active::after {
+        display: none;
+      }
+      
+      .nav-link.active {
+        background-color: #F9FAFB;
+      }
+
+      .menu-checkbox:checked ~ .nav-menu {
+        max-height: 300px;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .hero-layout {
+        flex-direction: row;
+        align-items: stretch;
+      }
+      
+      .logo-wrapper {
+        max-width: 300px;
+      }
+
+      .message-block {
+        flex-direction: row;
+      }
+
+      .message-image-container {
+        width: 35%;
+        height: auto;
+        min-height: 350px;
+      }
+
+      .message-text-container {
+        width: 65%;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      /* Dividers between columns in Desktop Stat view */
+      .stat-card:first-child {
+        border-right: 1px solid #4B5563;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-accent-bar"></div>
+
+  <nav class="site-navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-brand">
+        Shurid 18<span>Samobai Samity Ltd.</span>
+      </a>
+      
+      <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+      <label for="menu-toggle" class="menu-toggle-label">☰</label>
+
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link active">Home</a></li>
+        <li><a href="leadership.html" class="nav-link">Leadership</a></li>
+        <li><a href="about.html" class="nav-link">About Us</a></li>
+        <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="association-hero-section">
+    <div class="container">
+      <div class="hero-layout">
+        <div class="logo-wrapper">
+          <img src="logo.jpg" alt="Shurid 18 Logo" class="logo-image">
+        </div>
+        <div class="info-stack">
+          <h1 class="association-title">Shurid 18 Samobai Samity Ltd.</h1>
+          <p class="association-description">
+            'Shurid 18 Samobai Samity Ltd' is a government approved association with the members of 18th BCS Administrations Cadres (Reg No- 1398, Date- 04/12/2012).
+          </p>
+          <div class="contact-row">
+            <div class="contact-item">
+              <span class="icon">📞</span>
+              <span>Contact: <a href="tel:01838181818">018-38181818</a></span>
+            </div>
+            <div class="contact-item">
+              <span class="icon">✉️</span>
+              <span>Email: <a href="mailto:suhrid18.ec@gmail.com">suhrid18.ec@gmail.com</a></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="welcome-section">
+    <div class="container">
+      
+      <div class="message-block">
+        <div class="message-image-container">
+          <img src="president.jpg" alt="Mr. Md. Fazlur Rahman" class="message-image">
+        </div>
+        <div class="message-text-container">
+          <h2 class="message-title">President’s Welcome Message</h2>
+          <div class="message-sender">Mr. Md. Fazlur Rahman (President)</div>
+          <div class="message-body">
+            <p>বিসিএস প্রশাসন ক্যাডারের ১৮তম ব্যাচের প্রাণের সংগঠন ‘সুহৃদ ১৮ সমবায় সমিতি লিঃ’ এর অফিসিয়াল ওয়েবসাইটে আপনাকে আন্তরিক সাদর সম্ভাষণ। প্রতিটি সুহৃদ সদস্যের কাছে ‘সুহৃদ ১৮’ শুধু একটি সংগঠনের নাম নয়, এটি গভীর ভালোবাসা, নিবিড় বন্ধুত্ব এবং অবিচ্ছেদ্য এক আত্মিক বন্ধন।</p>
+            <ul class="message-points">
+              <li><span class="point-title">১. সদস্যদের কল্যাণ:</span> সুহৃদ সদস্যদের সৃজনশীল, একাডেমিক ও কল্যাণমূলক কর্মকাণ্ডকে স্মৃতি ডায়েরিতে অম্লান করে রাখতে প্রতি দুই বছর পরপর সুহৃদ স্মরণিকা প্রকাশ একটি গুরুত্বপূর্ণ ভূমিকা পালন করে আসছে।</li>
+              <li><span class="point-title">২. সামাজিক দায়বদ্ধতা:</span> নিজেদের ও পরিবারের কল্যাণের পাশাপাশি আমরা নিয়মিত বিভিন্ন সমাজকল্যাণমূলক কাজ বাস্তবায়ন করে যাচ্ছি, যা আমাদের অভিজ্ঞতার ঝুলি সমৃদ্ধ করার পাশাপাশি সমাজকে করছে সুন্দর।</li>
+              <li><span class="point-title">৩. প্রজন্মের মেলবন্ধন:</span> দিন দিন সুহৃদের পরিধি যেমন বাড়ছে, তেমনি আমাদের পরবর্তী প্রজন্মও আনন্দের সাথে এই যাত্রায় যুক্ত হচ্ছে। আমাদের প্রত্যাশা এই সম্পর্ক, valeur ও ভালোবাসা প্রজন্ম থেকে প্রজন্মে ছড়িয়ে পড়বে।</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="message-block">
+        <div class="message-image-container">
+          <img src="gs.jpg" alt="Mr. Sharf Uddin Ahmed Choudhury" class="message-image">
+        </div>
+        <div class="message-text-container">
+          <h2 class="message-title">General Secretary's Welcome Message</h2>
+          <div class="message-sender">Mr. Sharf Uddin Ahmed Choudhury (General Secretary)</div>
+          <div class="message-body">
+            <p>স্বাগতম ‘সুহৃদ ১৮’-এর গৌরবময় যাত্রায়। ১৮তম বিসিএস প্রশাসন সার্ভিসের প্রাণের সংগঠন ‘সুহৃদ ১৮’ এর অফিসিয়াল ওয়েবপোর্টালে আপনাকে আন্তরিক স্বাগতম। দীর্ঘদিনের অক্লান্ত প্রচেষ্টা এবং ধারাবাহিকতা বজায় রেখে আমাদের এই ঐতিহ্যবাহী পথচলা। সমবায় সমিতি গঠনের পর থেকে নিয়মিত বিভিন্ন সামাজিক কর্মকান্ডর পাশাপাশি প্রকাশনার মাধ্যমে আমাদের সদস্য ও নির্বাহী কমিটির সৃজনশীলতা এবং সাংগঠনিক দক্ষতার প্রকাশ ঘটানো হয়।</p>
+            <p style="margin-top: 10px; font-weight: bold; color: var(--charcoal-dark);">২৭ বছরের পথচলা: অর্জন, সংহতি ও মানবিকতা</p>
+            <p>বিগত ২৭ বছরের দীর্ঘ ও গৌরবময় যাত্রায় ‘সুহৃদ ১৮’ পরিবার সৃজনশীলতা, পারস্পরিক সহযোগিতা এবং সহমর্মিতার বহু সোপান অতিক্রম করেছে। আমাদের এই পথচলা যেমন আনন্দের, তেমনই সফলতার।</p>
+            <ul class="message-points">
+              <li><span class="point-title">১. পারিবারিক মেলবন্ধন:</span> নিয়মিত নান্দনিক পারিবারিক মিলনমেলার আয়োজন এবং সমসাময়িক বিষয়ে যৌথ ‘লার্নিং সেশন’ পরিচালনার মাধ্যমে আমরা আমাদের জ্ঞান ও আত্মিক বন্ধনকে সমৃদ্ধ করছি।</li>
+              <li><span class="point-title">২. পারস্পরিক সহযোগিতা ও সামাজিক দায়বদ্ধতা:</span> সদস্যদের বহুমুখী বিনিয়োগ কার্যক্রমের পাশাপাশি যেকোনো সংকটে বা অসুস্থতায় একে অপরের পাশে দাঁড়ানো এবং সামাজিক ও মানবিক কার্যক্রমে অংশ নেওয়া আমাদের অন্যতম প্রধান লক্ষ্য।</li>
+              <li><span class="point-title">৩. মূল্যবোধের রূপান্তর:</span> ‘প্রজন্ম সুহৃদ’ এর মাধ্যমে আমরা আমাদের সততা, ঐক্য ও মানবিক মূল্যবোধগুলো পরবর্তী প্রজন্মের মাঝে সফলভাবে স্থানান্তরিত করে যাচ্ছি।</li>
+            </ul>
+            <p style="margin-top: 10px;">সুখময় মুহূর্তগুলোকে স্মৃতির পাতায় অম্লান করে রাখতে এবং আমাদের সমাজসেবামূলক কাজগুলোকে আরও বেগবান করতেই বিভিন্ন সময় স্মরণিকা প্রকাশের উদ্যোগ নেয়া হয়। আমাদের এই দীর্ঘ পথচলাকে সহজ ও কুসুমাস্তীর্ণ করেছেন আমাদের সকল শুভাকাঙ্ক্ষী, বন্ধু ও স্বজনেরা।</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <section class="stats-section">
+    <div class="container stats-grid">
+      <div class="stat-card">
+        <h3>92</h3>
+        <p>Number of Members</p>
+      </div>
+      <div class="stat-card">
+        <h3>2012</h3>
+        <p>Active Since</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="bottom-accent-bar" style="height: 6px; background-color: var(--accent-red); width: 100%;"></div>
+
+</body>
+</html>

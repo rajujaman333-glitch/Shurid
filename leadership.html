@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leadership & Committee - Shurid 18 Samobai Samity Ltd</title>
+  <style>
+    /* Design Tokens / Branding Colors */
+    :root {
+      --shurid-green: #3AA74C;
+      --charcoal-dark: #2D3136;
+      --accent-red: #E63946;
+      --bg-light: #F9FAFB;
+      --white: #FFFFFF;
+      --text-gray: #55585D;
+      --image-bg: #F3F4F6;
+    }
+
+    /* Reset & Base Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-light);
+      color: var(--charcoal-dark);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    /* Red Top Highlight Bar from Logo */
+    .top-accent-bar {
+      height: 6px;
+      background-color: var(--accent-red);
+      width: 100%;
+      position: relative;
+      z-index: 1001;
+    }
+
+    /* Container for layout constraints */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ==========================================
+       GLOBAL INTERACTIVE HEADER & NAVIGATION
+       ========================================== */
+    .site-navbar {
+      background-color: var(--white);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid #E5E7EB;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+    }
+
+    .nav-brand {
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--charcoal-dark);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-brand span {
+      color: var(--shurid-green);
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 24px;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: var(--charcoal-dark);
+      font-size: 15px;
+      font-weight: 600;
+      transition: color 0.2s ease;
+      padding: 8px 0;
+      position: relative;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--shurid-green);
+    }
+
+    /* Active Page Indicator Underline */
+    .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--shurid-green);
+    }
+
+    /* Mobile Menu Toggle (Pure CSS Hamburger) */
+    .menu-checkbox {
+      display: none;
+    }
+
+    .menu-toggle-label {
+      display: none;
+      cursor: pointer;
+      font-size: 24px;
+      user-select: none;
+      color: var(--charcoal-dark);
+    }
+
+    /* ==========================================
+       TOP SECTION: Association Descriptions
+       ========================================== */
+    .association-intro-section {
+      background-color: var(--white);
+      padding: 40px 0;
+      border-bottom: 1px solid #E5E7EB;
+    }
+
+    .intro-layout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .logo-wrapper {
+      width: 100%;
+      max-width: 320px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .logo-image {
+      width: 100%;
+      height: auto;
+    }
+
+    .info-stack {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      justify-content: center;
+    }
+
+    .association-title {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--charcoal-dark);
+      line-height: 1.2;
+    }
+
+    .association-description {
+      font-size: 16px;
+      color: var(--text-gray);
+    }
+
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-size: 15px;
+      font-weight: 500;
+      border-top: 1px dashed #E5E7EB;
+      padding-top: 16px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .contact-item span.icon {
+      color: var(--shurid-green);
+      font-weight: bold;
+    }
+
+    .contact-item a {
+      color: var(--charcoal-dark);
+      text-decoration: none;
+    }
+
+    .contact-item a:hover {
+      color: var(--shurid-green);
+    }
+
+    /* ==========================================
+       MIDDLE SECTION: Leadership Committee Grids
+       ========================================== */
+    body {
+  background-color: var(--bg-light);
+  color: var(--charcoal-dark);
+  line-height: 1.6;
+  padding-bottom: 0; /* Changed from 60px to 0 to let the bar touch the edge */
+}
+
+.committee-section {
+  padding: 50px 0 80px 0; /* Added 80px padding to the bottom of the content instead */
+}
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 40px;
+      color: var(--charcoal-dark);
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background-color: var(--shurid-green);
+      margin: 8px auto 0 auto;
+      border-radius: 2px;
+    }
+
+    .profile-card {
+      background-color: var(--white);
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      border: 1px solid #E5E7EB;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .profile-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+    }
+
+    .image-container {
+      width: 100%;
+      height: 320px;
+      background-color: var(--image-bg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 8px;
+    }
+
+    .profile-image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .card-content {
+      padding: 20px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .member-name {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--charcoal-dark);
+      margin-bottom: 4px;
+    }
+
+    .member-post {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--shurid-green);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+
+    .member-phone {
+      font-size: 14px;
+      color: var(--text-gray);
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+
+    .vcard-button {
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background-color: var(--charcoal-dark);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 16px;
+      border-radius: 6px;
+      transition: background-color 0.2s ease;
+      width: 100%;
+    }
+
+    .vcard-button:hover {
+      background-color: var(--shurid-green);
+    }
+
+    .top-tier-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .bottom-tier-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+      max-width: 740px;
+      margin: 0 auto;
+    }
+
+    /* ==========================================
+       RESPONSIVE BREAKPOINTS (Mobile Friendly)
+       ========================================== */
+    @media (max-width: 767px) {
+      .menu-toggle-label {
+        display: block; /* Shows burger menu icon on mobile layout */
+      }
+
+      .nav-menu {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: var(--white);
+        flex-direction: column;
+        gap: 0;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        border-top: 1px solid #E5E7EB;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-in-out;
+      }
+
+      .nav-menu li {
+        width: 100%;
+        text-align: center;
+      }
+
+      .nav-link {
+        display: block;
+        padding: 16px 0;
+        border-bottom: 1px solid #F3F4F6;
+      }
+
+      .nav-link.active::after {
+        display: none; /* Hide desktop line style on mobile */
+      }
+      
+      .nav-link.active {
+        background-color: #F9FAFB;
+      }
+
+      /* Displays drawer menu when checkbox input toggle updates */
+      .menu-checkbox:checked ~ .nav-menu {
+        max-height: 300px;
+      }
+    }
+
+    @media (min-width: 640px) {
+      .bottom-tier-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 768px) {
+      .intro-layout {
+        flex-direction: row;
+        align-items: stretch;
+      }
+      
+      .logo-wrapper {
+        max-width: 300px;
+      }
+
+      .top-tier-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      
+      .top-tier-grid .profile-card:nth-child(2) {
+        border: 2px solid var(--shurid-green);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-accent-bar"></div>
+
+  <nav class="site-navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-brand">
+        Shurid 18<span>Samobai Samity Ltd</span>
+      </a>
+      
+      <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+      <label for="menu-toggle" class="menu-toggle-label">☰</label>
+
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="leadership.html" class="nav-link active">Leadership</a></li>
+        <li><a href="about.html" class="nav-link">About Us</a></li>
+        <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="association-intro-section">
+    <div class="container">
+      <div class="intro-layout">
+        <div class="logo-wrapper">
+          <img src="logo.jpg" alt="Shurid 18 Logo" class="logo-image">
+        </div>
+        <div class="info-stack">
+          <h1 class="association-title">Shurid 18 Samobai Samity Ltd.</h1>
+          <p class="association-description">
+            'Shurid 18 Samobai Samity Ltd' is a government approved association with the members of 18th BCS Administrations Cadres (Reg No- 1398, Date- 04/12/2012).
+          </p>
+          <div class="contact-row">
+            <div class="contact-item">
+              <span class="icon">📞</span>
+              <span>Contact: <a href="tel:01838181818">018-38181818</a></span>
+            </div>
+            <div class="contact-item">
+              <span class="icon">✉️</span>
+              <span>Email: <a href="mailto:suhrid18.ec@gmail.com">suhrid18.ec@gmail.com</a></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="committee-section">
+    <div class="container">
+      <h2 class="section-title">Executive Committee Leadership</h2>
+
+      <div class="top-tier-grid">
+        
+        <div class="profile-card">
+          <div class="image-container">
+            <img src="treasurer.jpg" alt="Mr. Md. Sakhawat Hossain" class="profile-image">
+          </div>
+          <div class="card-content">
+            <h3 class="member-name">Mr. Md. Sakhawat Hossain</h3>
+            <div class="member-post">Treasurer</div>
+            <div class="member-phone">📞 019-13146139</div>
+            <a href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AFN%3AMr.%20Md.%20Sakhawat%20Hossain%0AORG%3AShurid%2018%20Samobai%20Samity%20Ltd.%0ATITLE%3ATreasurer%0ATEL%3BTYPE%3DCELL%3A019-13146139%0AEND%3AVCARD" 
+               class="vcard-button" 
+               download="Mr_Md_Sakhawat_Hossain.vcf">
+              <span>📥</span> Download VCard
+            </a>
+          </div>
+        </div>
+
+        <div class="profile-card">
+          <div class="image-container">
+            <img src="gs.jpg" alt="Mr. Sharf Uddin Ahmed Choudhury" class="profile-image">
+          </div>
+          <div class="card-content">
+            <h3 class="member-name">Mr. Sharf Uddin Ahmed Choudhury</h3>
+            <div class="member-post">General Secretary</div>
+            <div class="member-phone">📞 015-52455601</div>
+            <a href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AFN%3AMr.%20Sharf%20Uddin%20Ahmed%20Choudhury%0AORG%3AShurid%2018%20Samobai%20Samity%20Ltd.%0ATITLE%3AGeneral%20Secretary%0ATEL%3BTYPE%3DCELL%3A015-52455601%0AEND%3AVCARD" 
+               class="vcard-button" 
+               download="Mr_Sharf_Uddin_Ahmed_Choudhury.vcf">
+              <span>📥</span> Download VCard
+            </a>
+          </div>
+        </div>
+
+        <div class="profile-card">
+          <div class="image-container">
+            <img src="president.jpg" alt="Mr. Md. Fazlur Rahman" class="profile-image">
+          </div>
+          <div class="card-content">
+            <h3 class="member-name">Mr. Md. Fazlur Rahman</h3>
+            <div class="member-post">President</div>
+            <div class="member-phone">📞 017-13581397</div>
+            <a href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AFN%3AMr.%20Md.%20Fazlur%20Rahman%0AORG%3AShurid%2018%20Samobai%20Samity%20Ltd.%0ATITLE%3APresident%0ATEL%3BTYPE%3DCELL%3A017-13581397%0AEND%3AVCARD" 
+               class="vcard-button" 
+               download="Mr_Md_Fazlur_Rahman.vcf">
+              <span>📥</span> Download VCard
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="bottom-tier-grid">
+        
+        <div class="profile-card">
+          <div class="image-container">
+            <img src="exe.jpg" alt="Riajujjaman Raju" class="profile-image">
+          </div>
+          <div class="card-content">
+            <h3 class="member-name">Mr. Riajujjaman Raju</h3>
+            <div class="member-post">Executive</div>
+            <div class="member-phone">📞 017-11792777</div>
+            <a href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AFN%3ARiajujjaman%20Raju%0AORG%3AShurid%2018%20Samobai%20Samity%20Ltd.%0ATITLE%3AExecutive%0ATEL%3BTYPE%3DCELL%3A017-11792777%0AEND%3AVCARD" 
+               class="vcard-button" 
+               download="Mr._Riajujjaman_Raju.vcf">
+              <span>📥</span> Download VCard
+            </a>
+          </div>
+        </div>
+
+        <div class="profile-card">
+          <div class="image-container">
+            <img src="eo.jpg" alt="Md. Wahidujjaman" class="profile-image">
+          </div>
+          <div class="card-content">
+            <h3 class="member-name">Mr. Md. Wahidujjaman</h3>
+            <div class="member-post">Executive Officer</div>
+            <div class="member-phone">📞 017-77744477</div>
+            <a href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AFN%3AMd.%20Wahidujjaman%0AORG%3AShurid%2018%20Samobai%20Samity%20Ltd.%0ATITLE%3AExecutive%20Officer%0ATEL%3BTYPE%3DCELL%3A017-77744477%0AEND%3AVCARD" 
+               class="vcard-button" 
+               download="Mr._Md_Wahidujjaman.vcf">
+              <span>📥</span> Download VCard
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+<div class="bottom-accent-bar" style="height: 6px; background-color: var(--accent-red); width: 100%;"></div>
+</body>
+</html>
+</body>
+</html>

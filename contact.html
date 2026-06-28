@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Shurid 18 Samobai Samity Ltd</title>
+  <style>
+    /* Design Tokens / Branding Colors */
+    :root {
+      --shurid-green: #3AA74C;
+      --charcoal-dark: #2D3136;
+      --accent-red: #E63946;
+      --bg-light: #F9FAFB;
+      --white: #FFFFFF;
+      --text-gray: #55585D;
+      --border-gray: #E5E7EB;
+    }
+
+    /* Reset & Base Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-light);
+      color: var(--charcoal-dark);
+      line-height: 1.6;
+    }
+
+    .top-accent-bar {
+      height: 6px;
+      background-color: var(--accent-red);
+      width: 100%;
+      position: relative;
+      z-index: 1001;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* GLOBAL STICKY NAVIGATION BAR */
+    .site-navbar {
+      background-color: var(--white);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid var(--border-gray);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+    }
+
+    .nav-brand {
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--charcoal-dark);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-brand span { color: var(--shurid-green); }
+    .nav-menu { display: flex; list-style: none; gap: 24px; }
+    .nav-link {
+      text-decoration: none;
+      color: var(--charcoal-dark);
+      font-size: 15px;
+      font-weight: 600;
+      transition: color 0.2s ease;
+      padding: 8px 0;
+      position: relative;
+    }
+
+    .nav-link:hover, .nav-link.active { color: var(--shurid-green); }
+    .nav-link.active::after {
+      content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background-color: var(--shurid-green);
+    }
+
+    .menu-checkbox { display: none; }
+    .menu-toggle-label { display: none; cursor: pointer; font-size: 24px; color: var(--charcoal-dark); }
+
+    /* HERO HEADER BLOCK */
+    .association-hero-section {
+      background-color: var(--white);
+      padding: 40px 0;
+      border-bottom: 1px solid var(--border-gray);
+    }
+
+    .hero-layout { display: flex; flex-direction: column; align-items: center; gap: 30px; }
+    .logo-wrapper { width: 100%; max-width: 320px; display: flex; justify-content: center; align-items: center; }
+    .logo-image { width: 100%; height: auto; }
+    .info-stack { width: 100%; display: flex; flex-direction: column; gap: 16px; justify-content: center; }
+    .association-title { font-size: 28px; font-weight: 800; color: var(--charcoal-dark); line-height: 1.2; }
+    .association-description { font-size: 16px; color: var(--text-gray); }
+    
+    /* CONTACT ROW IN HERO */
+    .contact-row { display: flex; flex-wrap: wrap; gap: 20px; font-size: 15px; font-weight: 500; border-top: 1px dashed var(--border-gray); padding-top: 16px; }
+    .contact-item { display: flex; align-items: center; gap: 8px; }
+    .contact-item span.icon { color: var(--shurid-green); font-weight: bold; }
+    .contact-item a { color: var(--charcoal-dark); text-decoration: none; }
+    .contact-item a:hover { color: var(--shurid-green); }
+
+    /* CORE CONTENT SECTION STYLES */
+    .content-section { padding: 60px 0; }
+    .section-title { text-align: center; font-size: 28px; font-weight: 700; margin-bottom: 40px; color: var(--charcoal-dark); position: relative; }
+    .section-title::after { content: ''; display: block; width: 60px; height: 3px; background-color: var(--shurid-green); margin: 8px auto 0 auto; border-radius: 2px; }
+
+    /* SPLIT GRID LAYOUT (LOCATION MAP & INFO BOXES) */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+      margin-bottom: 50px;
+    }
+
+    .info-card-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .info-box {
+      background-color: var(--white);
+      border: 1px solid var(--border-gray);
+      border-radius: 10px;
+      padding: 24px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .info-box-icon {
+      font-size: 24px;
+      background-color: #EBF7ED;
+      color: var(--shurid-green);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .info-box-content h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; color: var(--charcoal-dark); text-transform: uppercase; letter-spacing: 0.5px;}
+    .info-box-content p, .info-box-content a { font-size: 15px; color: var(--text-gray); text-decoration: none; }
+    .info-box-content a:hover { color: var(--shurid-green); }
+
+    .map-embed-container {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border-gray);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+      height: 340px;
+    }
+    .map-embed-container iframe { width: 100%; height: 100%; border: 0; }
+
+    /* INQUIRY COMPASSIONATE FORM STYLES */
+    .form-wrapper-box {
+      background-color: var(--white);
+      border: 1px solid var(--border-gray);
+      border-radius: 12px;
+      padding: 40px 30px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .form-headline-box { text-align: center; margin-bottom: 30px; }
+    .form-headline-box h3 { font-size: 22px; color: var(--charcoal-dark); margin-bottom: 8px;}
+    .form-headline-box p { font-size: 14px; color: var(--text-gray); }
+
+    .form-grid-2col {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--charcoal-dark);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #D1D5DB;
+      border-radius: 6px;
+      font-size: 15px;
+      color: var(--charcoal-dark);
+      background-color: var(--bg-light);
+      transition: all 0.2s ease;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--shurid-green);
+      background-color: var(--white);
+      box-shadow: 0 0 0 3px rgba(58, 167, 76, 0.15);
+    }
+
+    textarea.form-control { resize: vertical; min-height: 140px; }
+
+    .submit-btn-wrapper { text-align: center; margin-top: 30px; }
+    
+    .form-submit-button {
+      background-color: var(--charcoal-dark);
+      color: var(--white);
+      border: none;
+      padding: 14px 40px;
+      font-size: 15px;
+      font-weight: 700;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s ease, transform 0.1s ease;
+      width: 100%;
+    }
+    .form-submit-button:hover { background-color: var(--shurid-green); }
+    .form-submit-button:active { transform: scale(0.98); }
+
+    /* RESPONSIVE LAYOUT RESPONSES */
+    @media (max-width: 767px) {
+      .menu-toggle-label { display: block; }
+      .nav-menu {
+        position: absolute; top: 70px; left: 0; width: 100%;
+        background-color: var(--white); flex-direction: column; gap: 0;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-top: 1px solid var(--border-gray);
+        max-height: 0; overflow: hidden; transition: max-height 0.3s ease-in-out;
+      }
+      .nav-menu li { width: 100%; text-align: center; }
+      .nav-link { display: block; padding: 16px 0; border-bottom: 1px solid #F3F4F6; }
+      .nav-link.active::after { display: none; }
+      .nav-link.active { background-color: #F9FAFB; }
+      .menu-checkbox:checked ~ .nav-menu { max-height: 300px; }
+      
+      .form-wrapper-box { padding: 30px 20px; }
+    }
+
+    @media (min-width: 768px) {
+      .hero-layout { flex-direction: row; align-items: stretch; }
+      .logo-wrapper { max-width: 300px; }
+      .contact-grid { grid-template-columns: 1fr 1fr; align-items: start; }
+      .form-grid-2col { grid-template-columns: repeat(2, 1fr); }
+      .form-submit-button { width: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-accent-bar"></div>
+
+  <nav class="site-navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-brand">Shurid <span>18</span></a>
+      <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+      <label for="menu-toggle" class="menu-toggle-label">☰</label>
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="leadership.html" class="nav-link">Leadership</a></li>
+        <li><a href="about.html" class="nav-link">About Us</a></li>
+        <li><a href="contact.html" class="nav-link active">Contact Us</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="association-hero-section">
+    <div class="container">
+      <div class="hero-layout">
+        <div class="logo-wrapper">
+          <img src="logo.jpg" alt="Shurid 18 Logo" class="logo-image">
+        </div>
+        <div class="info-stack">
+          <h1 class="association-title">Shurid 18 Samobai Samity Ltd.</h1>
+          <p class="association-description">
+            'Shurid 18 Samobai Samity Ltd' is a government approved association with the members of 18th BCS Administrations Cadres (Reg No- 1398, Date- 04/12/2012).
+          </p>
+          <div class="contact-row">
+            <div class="contact-item">
+              <span class="icon">📞</span>
+              <span>Contact: <a href="tel:01838181818">018-38181818</a></span>
+            </div>
+            <div class="contact-item">
+              <span class="icon">✉️</span>
+              <span>Email: <a href="mailto:suhrid18.ec@gmail.com">suhrid18.ec@gmail.com</a></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="content-section">
+    <div class="container">
+      <h2 class="section-title">Contact Information</h2>
+
+      <div class="contact-grid">
+        
+        <div class="info-card-panel">
+          
+          <div class="info-box">
+            <div class="info-box-icon">📍</div>
+            <div class="info-box-content">
+              <h3>Office Location</h3>
+              <p>63, BIAM Foundation, New Eskaton, Ramna, Dhaka-1000</p>
+            </div>
+          </div>
+
+          <div class="info-box">
+            <div class="info-box-icon">📞</div>
+            <div class="info-box-content">
+              <h3>Contact Number</h3>
+              <p><a href="tel:01838181818">018-38181818</a></p>
+            </div>
+          </div>
+
+          <div class="info-box">
+            <div class="info-box-icon">✉️</div>
+            <div class="info-box-content">
+              <h3>Official Email</h3>
+              <p><a href="mailto:suhrid18.ec@gmail.com">suhrid18.ec@gmail.com</a></p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="map-embed-container">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3652.197368541818!2d90.4019184761073!3d23.740342389176848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b895d3fa7aff%3A0x6bda190d70eb1ea5!2sBIAM%20Foundation!5e0!3m2!1sen!2sbd!4v1710000000000!5m2!1sen!2sbd" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+
+      </div>
+
+      <div class="form-wrapper-box">
+        <div class="form-headline-box">
+          <h3>Send Us an Inquiry</h3>
+          <p>Please fill out the form below, and your message will be forwarded directly to our management committee.</p>
+        </div>
+
+        <form action="https://formspree.io/f/your_formspree_id_here" method="POST">
+          
+          <div class="form-grid-2col">
+            <div class="form-group">
+              <label for="user-name">Name</label>
+              <input type="text" id="user-name" name="Name" class="form-control" placeholder="Your full name" required>
+            </div>
+            <div class="form-group">
+              <label for="user-email">Email Address</label>
+              <input type="email" id="user-email" name="Email" class="form-control" placeholder="Your email address" required>
+            </div>
+          </div>
+
+          <div class="form-grid-2col">
+            <div class="form-group">
+              <label for="user-phone">Contact No.</label>
+              <input type="tel" id="user-phone" name="Contact No" class="form-control" placeholder="e.g. 01XXXXXXXXX" required>
+            </div>
+            <div class="form-group">
+              <label for="user-subject">Subject</label>
+              <input type="text" id="user-subject" name="Subject" class="form-control" placeholder="Purpose of your inquiry" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="user-message">Inquiry</label>
+            <textarea id="user-message" name="Inquiry" class="form-control" placeholder="Type your detailed message or question here..." required></textarea>
+          </div>
+
+          <div class="submit-btn-wrapper">
+            <button type="submit" class="form-submit-button">Submit Inquiry</button>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <div class="bottom-accent-bar" style="height: 6px; background-color: var(--accent-red); width: 100%; margin-top: 60px;"></div>
+
+</body>
+</html>

@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Shurid 18 Samobai Samity Ltd</title>
+  <style>
+    /* Design Tokens / Branding Colors */
+    :root {
+      --shurid-green: #3AA74C;
+      --charcoal-dark: #2D3136;
+      --accent-red: #E63946;
+      --bg-light: #F9FAFB;
+      --white: #FFFFFF;
+      --text-gray: #55585D;
+    }
+
+    /* Reset & Base Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-light);
+      color: var(--charcoal-dark);
+      line-height: 1.6;
+      padding-bottom: 0;
+    }
+
+    .top-accent-bar {
+      height: 6px;
+      background-color: var(--accent-red);
+      width: 100%;
+      position: relative;
+      z-index: 1001;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* NAVIGATION */
+    .site-navbar {
+      background-color: var(--white);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid #E5E7EB;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+    }
+
+    .nav-brand {
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--charcoal-dark);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-brand span { color: var(--shurid-green); }
+    .nav-menu { display: flex; list-style: none; gap: 24px; }
+    .nav-link {
+      text-decoration: none;
+      color: var(--charcoal-dark);
+      font-size: 15px;
+      font-weight: 600;
+      transition: color 0.2s ease;
+      padding: 8px 0;
+      position: relative;
+    }
+
+    .nav-link:hover, .nav-link.active { color: var(--shurid-green); }
+    .nav-link.active::after {
+      content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background-color: var(--shurid-green);
+    }
+
+    .menu-checkbox { display: none; }
+    .menu-toggle-label { display: none; cursor: pointer; font-size: 24px; color: var(--charcoal-dark); }
+
+    /* HERO SECTION */
+    .association-hero-section {
+      background-color: var(--white);
+      padding: 40px 0;
+      border-bottom: 1px solid #E5E7EB;
+    }
+
+    .hero-layout { display: flex; flex-direction: column; align-items: center; gap: 30px; }
+    .logo-wrapper { width: 100%; max-width: 320px; display: flex; justify-content: center; align-items: center; }
+    .logo-image { width: 100%; height: auto; }
+    .info-stack { width: 100%; display: flex; flex-direction: column; gap: 16px; justify-content: center; }
+    .association-title { font-size: 28px; font-weight: 800; color: var(--charcoal-dark); line-height: 1.2; }
+    .association-description { font-size: 16px; color: var(--text-gray); }
+    .contact-row { display: flex; flex-wrap: wrap; gap: 20px; font-size: 15px; font-weight: 500; border-top: 1px dashed #E5E7EB; padding-top: 16px; }
+    .contact-item { display: flex; align-items: center; gap: 8px; }
+    .contact-item span.icon { color: var(--shurid-green); font-weight: bold; }
+    .contact-item a { color: var(--charcoal-dark); text-decoration: none; }
+    .contact-item a:hover { color: var(--shurid-green); }
+
+    /* GENERAL SECTION STYLES */
+    .content-section { padding: 60px 0; border-bottom: 1px solid #E5E7EB; }
+    .content-section:nth-child(even) { background-color: var(--white); }
+    .section-title { text-align: center; font-size: 28px; font-weight: 700; margin-bottom: 40px; color: var(--charcoal-dark); position: relative; }
+    .section-title::after { content: ''; display: block; width: 60px; height: 3px; background-color: var(--shurid-green); margin: 8px auto 0 auto; border-radius: 2px; }
+    
+    .text-block h3 { font-size: 22px; color: var(--charcoal-dark); margin: 25px 0 10px 0; }
+    .text-block p { color: var(--text-gray); margin-bottom: 15px; text-align: justify; }
+    .pillars-list { list-style: none; margin-top: 20px; }
+    .pillars-list li { margin-bottom: 20px; padding-left: 25px; position: relative; }
+    .pillars-list li::before { content: "✓"; color: var(--shurid-green); font-weight: bold; position: absolute; left: 0; top: 2px; }
+    .pillar-title { font-weight: 700; color: var(--charcoal-dark); }
+
+    /* ==========================================
+       SIDE BY SIDE MEMBERS & COMMITTEES LIST
+       ========================================== */
+    .lists-split-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    .list-column-box {
+      background-color: var(--white);
+      border: 1px solid #E5E7EB;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .column-box-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--charcoal-dark);
+      margin-bottom: 10px;
+      border-bottom: 2px solid #F3F4F6;
+      padding-bottom: 10px;
+    }
+
+    .column-box-desc {
+      font-size: 14px;
+      color: var(--text-gray);
+      margin-bottom: 20px;
+    }
+
+    /* Document Item Links */
+    .pdf-row-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: var(--bg-light);
+      border: 1px solid #E5E7EB;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 12px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .pdf-row-link:hover {
+      border-color: var(--shurid-green);
+      transform: translateX(3px);
+    }
+
+    .pdf-row-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .pdf-icon-badge {
+      font-size: 24px;
+      color: var(--accent-red);
+    }
+
+    .pdf-label-text {
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--charcoal-dark);
+    }
+
+    .pdf-action-tag {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--shurid-green);
+    }
+
+    /* SOUVENIR SECTIONS */
+    .grid-container { display: grid; grid-template-columns: 1fr; gap: 30px; }
+    .doc-card {
+      background-color: var(--white); border: 1px solid #E5E7EB; border-radius: 8px;
+      padding: 20px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .doc-info { display: flex; align-items: center; gap: 15px; }
+    .doc-icon { font-size: 32px; color: var(--accent-red); }
+    .doc-name { font-weight: 700; font-size: 16px; }
+    .doc-download-btn {
+      background-color: var(--charcoal-dark); color: var(--white); text-decoration: none;
+      padding: 8px 16px; border-radius: 4px; font-size: 14px; font-weight: 600; transition: background-color 0.2s;
+    }
+    .doc-download-btn:hover { background-color: var(--shurid-green); }
+
+    /* ==========================================
+       PHOTO ALBUM GALLERY STYLES
+       ========================================== */
+    .gallery-grid { display: grid; grid-template-columns: 1fr; gap: 25px; }
+    
+    .album-card {
+      background-color: var(--white);
+      border-radius: 12px;
+      border: 1px solid #E5E7EB;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .album-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 20px rgba(0,0,0,0.08);
+    }
+
+    .album-cover-wrapper {
+      width: 100%;
+      height: 240px;
+      background-color: var(--bg-light);
+      position: relative;
+    }
+
+    .album-cover-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Photos Count Overlay Badge */
+    .album-count-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background-color: rgba(45, 49, 54, 0.9);
+      color: var(--white);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .album-caption {
+      padding: 16px;
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--charcoal-dark);
+      text-align: center;
+      background-color: var(--white);
+    }
+
+    /* ==========================================
+       LIGHTBOX POP-UP MODAL (ALBUM VIEWER)
+       ========================================== */
+    .lightbox-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      user-select: none;
+    }
+
+    .lightbox-content-container {
+      position: relative;
+      max-width: 85%;
+      max-height: 80%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .lightbox-main-img {
+      max-width: 100%;
+      max-height: 70vh;
+      object-fit: contain;
+      border-radius: 4px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .lightbox-caption-text {
+      color: var(--white);
+      margin-top: 15px;
+      font-size: 16px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .lightbox-counter {
+      color: #9CA3AF;
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    /* Navigation Controllers */
+    .lightbox-close {
+      position: absolute; top: -50px; right: 0;
+      color: #E5E7EB; font-size: 36px; cursor: pointer; font-weight: 300;
+    }
+    .lightbox-close:hover { color: var(--accent-red); }
+
+    .lightbox-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      color: #E5E7EB; font-size: 40px; cursor: pointer; padding: 10px;
+      background: rgba(255,255,255,0.05); border-radius: 50%; width: 60px; height: 60px;
+      display: flex; align-items: center; justify-content: center; transition: background 0.2s;
+    }
+    .lightbox-arrow:hover { background: rgba(255,255,255,0.15); color: var(--white); }
+    .arrow-left { left: -80px; }
+    .arrow-right { right: -80px; }
+
+    /* RESPONSIVE LAYOUT */
+    @media (max-width: 767px) {
+      .menu-toggle-label { display: block; }
+      .nav-menu {
+        position: absolute; top: 70px; left: 0; width: 100%;
+        background-color: var(--white); flex-direction: column; gap: 0;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-top: 1px solid #E5E7EB;
+        max-height: 0; overflow: hidden; transition: max-height 0.3s ease-in-out;
+      }
+      .nav-menu li { width: 100%; text-align: center; }
+      .nav-link { display: block; padding: 16px 0; border-bottom: 1px solid #F3F4F6; }
+      .nav-link.active::after { display: none; }
+      .nav-link.active { background-color: #F9FAFB; }
+      .menu-checkbox:checked ~ .nav-menu { max-height: 300px; }
+      
+      /* Lightbox Adjustments for Mobile screen */
+      .arrow-left { left: -20px; background: rgba(0,0,0,0.5); }
+      .arrow-right { right: -20px; background: rgba(0,0,0,0.5); }
+      .lightbox-close { right: 10px; top: -60px; }
+    }
+
+    @media (min-width: 768px) {
+      .hero-layout { flex-direction: row; align-items: stretch; }
+      .logo-wrapper { max-width: 300px; }
+      .lists-split-layout { grid-template-columns: repeat(2, 1fr); }
+      .grid-container { grid-template-columns: repeat(2, 1fr); }
+      .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-accent-bar"></div>
+
+  <nav class="site-navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-brand">Shurid 18<span>Samobai Samity Ltd.</span></a>
+      <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+      <label for="menu-toggle" class="menu-toggle-label">☰</label>
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="leadership.html" class="nav-link">Leadership</a></li>
+        <li><a href="about.html" class="nav-link active">About Us</a></li>
+        <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="association-hero-section">
+    <div class="container">
+      <div class="hero-layout">
+        <div class="logo-wrapper">
+          <img src="logo.jpg" alt="Shurid 18 Logo" class="logo-image">
+        </div>
+        <div class="info-stack">
+          <h1 class="association-title">Shurid 18 Samobai Samity Ltd.</h1>
+          <p class="association-description">
+            'Shurid 18 Samobai Samity Ltd' is a government approved association with the members of 18th BCS Administrations Cadres (Reg No- 1398, Date- 04/12/2012).
+          </p>
+          <div class="contact-row">
+            <div class="contact-item">
+              <span class="icon">📞</span>
+              <span>Contact: <a href="tel:01838181818">018-38181818</a></span>
+            </div>
+            <div class="contact-item">
+              <span class="icon">✉️</span>
+              <span>Email: <a href="mailto:suhrid18.ec@gmail.com">suhrid18.ec@gmail.com</a></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="content-section">
+    <div class="container text-block">
+      <h2 class="section-title">Our History</h2>
+      <h3>A Journey of 27 Years of Unity and Excellence</h3>
+      <p>Today, ‘Suhrid 18 Samobai Samity Ltd.’ stands as one of the most vibrant, prestigious, and deeply-rooted fraternal organizations within the 18th BCS Administration Service of Bangladesh. Founded by the officers of 18th BCS Administrations Cadres. The organization has successfully transitioned from a closed batch platform into a highly organized, diversified, and impactful welfare collective. Over a glorious journey spanning 27 years, Suhrid 18 has consistently combined organizational excellence with social responsibility, setting a benchmark for batch based solidarity in the civil service.</p>
+      
+      <h3>The Early Days & Evolution</h3>
+      <p>Since its early days, the core mission of Suhrid 18 has been to foster deeply rooted bonding, creativity, and mutual cooperation among its members. Over nearly three decades, the platform has expanded its horizons significantly. What began as a traditional network of administrative colleagues has evolved into a fully operational co-operative system that manages multi-dimensional initiatives, including structured investment activities, welfare programs, and family-centric engagements.</p>
+      <p>Today, the name Suhrid 18 is synonymous with trust, empathy, and an unbreakable emotional bond—often referred to by its members not just as an organization, but as a lifestyle and a shared identity.</p>
+
+      <h3>A Legacy of Milestones and Core Pillars</h3>
+      <p>Throughout its 27 year history, Suhrid 18 has crossed numerous milestones, driven by the dedication of its members and executive leadership. The organization’s operations are anchored around four distinct pillars:</p>
+      <ul class="pillars-list">
+        <li><span class="pillar-title">Sustained Investment & Member Welfare:</span> Embracing a cooperative model, the organization manages strategic investment initiatives that ensure financial security and mutual benefits for its members.</li>
+        <li><span class="pillar-title">Institutional Memory & Creativity:</span> A cornerstone of the organization’s cultural identity is its flagship regular publication, ‘Angina’. For years, this commemorative magazine has served as a creative mirror, capturing the administrative excellence, literary talents, and shared memories of the Suhrid family.</li>
+        <li><span class="pillar-title">Compassionate Care & Solidarity:</span> True to its name the organization has a long standing history of standing firmly by its members and their families during times of illness, adversity, or crisis.</li>
+        <li><span class="pillar-title">Social Responsibility & Intellectual Growth:</span> Beyond internal welfare, Suhrid 18 actively engages in community development and humanitarian efforts. The platform also hosts joint 'Learning Sessions' on contemporary issues to ensure continuous professional and intellectual enrichment.</li>
+      </ul>
+
+      <h3>Bridging Generations for the Future</h3>
+      <p>As Suhrid 18 continues to grow, its impact has naturally extended to the families and loved ones of the members. A unique and defining achievement of recent years has been the active integration of the next generation ‘Projonmo Suhrid’ into this joyful journey. By involving children and family members in annual get-togethers, cultural exchanges, and collaborative events, Suhrid 18 is successfully transferring its core values of integrity, unity, and empathy from one generation to the next.</p>
+      <p>Looking forward, Suhrid 18 is uniquely positioned to capitalize on its rich history and collective wisdom. Managed by dedicated executive teams, the organization aims to further scale its welfare operations, diversify its social impact initiatives, and ensure that this beautiful bond of love and excellence remains illuminated for decades to come.</p>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="container">
+      <h2 class="section-title">Members & Committees Lists</h2>
+      
+      <div class="lists-split-layout">
+        
+        <div class="list-column-box">
+          <h3 class="column-box-title">Official Members List</h3>
+          <p class="column-box-desc">Contains information detailing general member postings, designated ministries, and respective administrative divisions.</p>
+          
+          <a href="member details (shurid 18 samobai samity ltd).pdf" class="pdf-row-link" target="_blank">
+            <div class="pdf-row-info">
+              <span class="pdf-icon-badge">📄</span>
+              <span class="pdf-label-text">General Member Details</span>
+            </div>
+            <span class="pdf-action-tag">Open PDF →</span>
+          </a>
+        </div>
+
+        <div class="list-column-box">
+          <h3 class="column-box-title">Executive Committee List</h3>
+          <p class="column-box-desc">Archive registers detailing the historical and functional executive boards organized by specific fiscal terms.</p>
+          
+          <div id="committee-files-root"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="container">
+      <h2 class="section-title">Souvenirs</h2>
+      <div class="grid-container" id="souvenir-container"></div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="container">
+      <h2 class="section-title">Photo Albums</h2>
+      <div class="gallery-grid" id="album-gallery-root"></div>
+    </div>
+  </section>
+
+  <div class="bottom-accent-bar" style="height: 6px; background-color: var(--accent-red); width: 100%;"></div>
+
+  <div class="lightbox-modal" id="lightbox">
+    <div class="lightbox-arrow arrow-left" id="prev-btn">&#10094;</div>
+    <div class="lightbox-content-container">
+      <span class="lightbox-close" id="close-btn">&times;</span>
+      <img src="" alt="" class="lightbox-main-img" id="lightbox-img">
+      <div class="lightbox-caption-text" id="lightbox-caption">Album Caption</div>
+      <div class="lightbox-counter" id="lightbox-count">1 of 5</div>
+    </div>
+    <div class="lightbox-arrow arrow-right" id="next-btn">&#10095;</div>
+  </div>
+
+  <script>
+    // --------------------------------------------------------
+    // ১. এক্সিকিউটিভ কমিটি পিডিএফ রেজিস্ট্রি (PDF REGISTRY)
+    // যখনই নতুন কোনো কমিটির PDF আসবে, শুধু ফাইলের নামটি নিচে যুক্ত করে দেবেন।
+    // --------------------------------------------------------
+    const executiveCommitteeFiles = [
+      "executive committee 2025-27.pdf",
+      "executive committee (previous).pdf"
+    ];
+
+    // --------------------------------------------------------
+    // ২. স্যুভেনির ফাইল রেজিস্ট্রি (SOUVENIR REGISTRY)
+    // --------------------------------------------------------
+    const souvenirFiles = [
+      "souvenir 2025.pdf"
+    ];
+
+    // --------------------------------------------------------
+    // ৩. ফটো অ্যালবাম ডাটাবেজ রেজিস্ট্রি (ALBUMS & PHOTOS REGISTRY)
+    // একটি ক্যাপশনের আন্ডারে একাধিক ছবি রাখতে নিচের নিয়মে সাজিয়ে লিখুন।
+    // কভার ইমেজ হিসেবে প্রথম ছবিটি ব্যানার আকারে শো করবে।
+    // --------------------------------------------------------
+    const photoAlbums = [
+      {
+        caption: "Bhawal Resort Picnic 2019",
+        folder: "photo",
+        images: [
+          "Bhawal Resort Picnic.jpg", 
+          "Bhawal Resort Picnic 1.jpg", 
+          "Bhawal Resort Picnic 2.jpg",
+	  "Bhawal Resort Picnic 3.jpg"
+        ]
+      },
+      {
+        caption: "Covid Relief",
+        folder: "photo",
+        images: [
+          "covid relief by executive committee.jpg",
+          "covid relief by executive committee 1.jpg",
+	  "covid relief by executive committee 2.jpg",
+	  "covid relief by executive committee 3.jpg",
+	  "covid relief by executive committee 4.jpg"
+        ]
+      },
+      {
+        caption: "Shurid Evening 2025",
+        folder: "photo",
+        images: [
+          "Shurid Evening 2025.jpg",
+	  "Shurid Evening 2025 1.jpg",
+	  "Shurid Evening 2025 2.jpg",
+	  "Shurid Evening 2025 3.jpg",
+	  "Shurid Evening 2025 4.jpg",
+	  "Shurid Evening 2025 5.jpg"
+        ]
+      },
+      {
+	caption: "EC Meeting 2020",
+        folder: "photo",
+        images: [
+          "EC Meeting 2020 1.jpg",
+	  "EC Meeting 2020 2.jpg",
+	  "EC Meeting 2020 3.jpg",
+	  "EC Meeting 2020 4.jpg",
+	  "EC Meeting 2020 5.jpg",
+	  "EC Meeting 2020 6.jpg"
+        ]
+      }
+    ];
+
+    // DYNAMIC CORE ENGINE INJECTIONS
+    // A. Render Executive Committees Side Box Lists
+    const committeeRoot = document.getElementById('committee-files-root');
+    if(executiveCommitteeFiles.length > 0) {
+      executiveCommitteeFiles.forEach(file => {
+        let label = file.replace('.pdf', '').replace(/[-_]/g, ' ');
+        label = label.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+        
+        committeeRoot.innerHTML += `
+          <a href="${file}" class="pdf-row-link" target="_blank">
+            <div class="pdf-row-info">
+              <span class="pdf-icon-badge">📋</span>
+              <span class="pdf-label-text">${label}</span>
+            </div>
+            <span class="pdf-action-tag">Open PDF →</span>
+          </a>
+        `;
+      });
+    } else {
+      committeeRoot.innerHTML = "<p style='color:gray; font-size:14px;'>No executive committee documents linked yet.</p>";
+    }
+
+    // B. Render Souvenir Documents Grid Modules
+    const souvenirContainer = document.getElementById('souvenir-container');
+    if(souvenirFiles.length > 0) {
+      souvenirFiles.forEach(file => {
+        let cleanName = file.replace('.pdf', '').replace(/[-_]/g, ' ');
+        cleanName = cleanName.charAt(0).toUpperCase() + cleanName.slice(1);
+        souvenirContainer.innerHTML += `
+          <div class="doc-card">
+            <div class="doc-info">
+              <div class="doc-icon">📕</div>
+              <div class="doc-name">${cleanName}</div>
+            </div>
+            <a href="souvenir/${file}" class="doc-download-btn" target="_blank">Open PDF</a>
+          </div>
+        `;
+      });
+    } else {
+      souvenirContainer.innerHTML = "<p style='text-align:center; color:gray; width:100%;'>No souvenirs available.</p>";
+    }
+
+    // C. Render Albums Interface Modules Grid
+    const albumGalleryRoot = document.getElementById('album-gallery-root');
+    photoAlbums.forEach((album, albumIdx) => {
+      albumGalleryRoot.innerHTML += `
+        <div class="album-card" onclick="openLightbox(${albumIdx})">
+          <div class="album-cover-wrapper">
+            <img src="${album.folder}/${album.images[0]}" alt="${album.caption}">
+            <div class="album-count-badge">📸 ${album.images.length} Photos</div>
+          </div>
+          <div class="album-caption">${album.caption}</div>
+        </div>
+      `;
+    });
+
+    // LIGHTBOX ENGINE FUNCTIONALITY LOGICS
+    let currentAlbumIdx = 0;
+    let currentImgIdx = 0;
+
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const lightboxCount = document.getElementById('lightbox-count');
+
+    function openLightbox(albumIndex) {
+      currentAlbumIdx = albumIndex;
+      currentImgIdx = 0;
+      updateLightboxContent();
+      lightbox.style.display = 'flex';
+    }
+
+    function updateLightboxContent() {
+      const album = photoAlbums[currentAlbumIdx];
+      lightboxImg.src = album.folder + '/' + album.images[currentImgIdx];
+      lightboxCaption.innerText = album.caption;
+      lightboxCount.innerText = `Photo ${currentImgIdx + 1} of ${album.images.length}`;
+    }
+
+    document.getElementById('close-btn').addEventListener('click', () => {
+      lightbox.style.display = 'none';
+    });
+
+    document.getElementById('next-btn').addEventListener('click', (e) => {
+      e.stopPropagation();
+      const album = photoAlbums[currentAlbumIdx];
+      currentImgIdx = (currentImgIdx + 1) % album.images.length;
+      updateLightboxContent();
+    });
+
+    document.getElementById('prev-btn').addEventListener('click', (e) => {
+      e.stopPropagation();
+      const album = photoAlbums[currentAlbumIdx];
+      currentImgIdx = (currentImgIdx - 1 + album.images.length) % album.images.length;
+      updateLightboxContent();
+    });
+
+    // Exit overlay on background click event triggers
+    lightbox.addEventListener('click', (e) => {
+      if(e.target === lightbox) lightbox.style.display = 'none';
+    });
+  </script>
+</body>
+</html>
